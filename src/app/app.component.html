@@ -3,3 +3,6 @@
 </div>
 
 <h1 class="text-3xl font-bold underline text-white">Hello world!</h1>
+<div *ngFor="let gif of gifs">
+  <img [src]="gif.images.fixed_height.url" alt="{{ gif.title }}" />
+</div>
