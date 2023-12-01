@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GiphyService } from 'src/app/giphy.service';
+import { GiphyService } from 'src/app/services/giphy.service';
 
 @Component({
   selector: 'gifGrid-component',

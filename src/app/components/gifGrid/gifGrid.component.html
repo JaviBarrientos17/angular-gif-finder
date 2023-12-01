@@ -1,0 +1,16 @@
+<div class="mx-4 md:mx-8 lg:mx-auto">
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ml-10 mr-10 lg:max-w-6xl xl:max-w-7xl lg:mx-auto xl:mx-auto sm:mt-4 md:mt-8 lg:mt-12 xl:mt-16 sm:mb-4 md:mb-8 lg:mb-12 xl:mb-16"
+  >
+    <div
+      *ngFor="let gif of gifs"
+      class="rounded overflow-hidden shadow-md w-full sm:w-full md:w-1/2 lg:w-full xl:w-full"
+    >
+      <img
+        [src]="gif.images.fixed_height.url"
+        alt="{{ gif.title }}"
+        class="w-full h-auto lg:w-full lg:h-full"
+      />
+    </div>
+  </div>
+</div>
