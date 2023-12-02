@@ -8,6 +8,7 @@ import { GiphyService } from 'src/app/services/giphy.service';
 })
 export class GifGridComponent implements OnInit {
   gifs: any[] = [];
+  searchQuery: any = '';
 
   constructor(private giphyService: GiphyService) {}
 
