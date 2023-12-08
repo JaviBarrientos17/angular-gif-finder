@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+// gifGrid.component.ts
+
+import { Component } from '@angular/core';
 import { GiphyService } from 'src/app/services/giphy.service';
 
 @Component({
@@ -6,19 +8,37 @@ import { GiphyService } from 'src/app/services/giphy.service';
   templateUrl: './gifGrid.component.html',
   styleUrls: ['./gifGrid.component.css'],
 })
-export class GifGridComponent implements OnInit {
+export class GifGridComponent {
   gifs: any[] = [];
-  searchQuery: any = '';
+  searchQuery: string = '';
+  isSearching: boolean = false;
+  noResultsMessage: string | null = null; // Nuevo campo para el mensaje
 
   constructor(private giphyService: GiphyService) {}
 
-  ngOnInit(): void {
-    this.search('panda');
-  }
+  search(): void {
+    if (this.searchQuery.trim() === '') {
+      return; // Evitar búsqueda vacía
+    }
 
-  search(query: string): void {
-    this.giphyService.searchGifs(query).subscribe((response) => {
-      this.gifs = response.data;
-    });
+    this.isSearching = true;
+    this.noResultsMessage = null; // Reiniciar el mensaje
+
+    this.giphyService.searchGifs(this.searchQuery).subscribe(
+      (response) => {
+        this.gifs = response.data;
+
+        // Verificar si no hay resultados
+        if (this.gifs.length === 0) {
+          this.noResultsMessage = `No se encontraron resultados para "${this.searchQuery}".`;
+        }
+
+        this.isSearching = false;
+      },
+      (error) => {
+        console.error('Error fetching gifs', error);
+        this.isSearching = false;
+      }
+    );
   }
 }
