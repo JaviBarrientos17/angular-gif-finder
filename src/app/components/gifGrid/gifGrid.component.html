@@ -1,4 +1,4 @@
-<div class="mx-4 md:mx-8 lg:mx-auto">
+<div class="mx-4 md:mx-8 lg:mx-auto" (scroll)="onScroll()">
   <div class="flex flex-col items-center space-y-4">
     <!-- <label for="search" class="text-lg font-semibold">Buscar Gifs:</label> -->
     <div class="flex items-center space-x-2">
@@ -43,5 +43,11 @@
     class="text-center mt-4"
   >
     {{ noResultsMessage }}
+  </div>
+
+  <!-- Indicador de carga al hacer scroll -->
+  <div *ngIf="loadingMore" class="flex justify-center items-center mt-4">
+    <div class="loader"></div>
+    <!-- Añade tu estilo de círculo de carga aquí -->
   </div>
 </div>
